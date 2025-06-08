@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shriya Desai | Product Manager Portfolio</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
       margin: 0;
@@ -19,15 +16,9 @@
     }
 
     @keyframes gradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .container {
@@ -60,7 +51,7 @@
       border-radius: 5px;
       cursor: pointer;
       font-weight: 600;
-      transition: background 0.3s;
+      transition: background 0.3s, color 0.3s;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -75,9 +66,14 @@
       color: white;
     }
 
+    .tab-button:hover:not(.active) {
+      background: #ddd;
+      color: #4f46e5;
+    }
+
     .tab-content {
       display: none;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.9);
       padding: 1.5rem;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
@@ -89,29 +85,24 @@
 
     .carousel-wrapper {
       margin-bottom: 3rem;
-      position: relative;
     }
 
     .carousel-title {
       font-size: 1.5rem;
       margin-bottom: 1rem;
       font-weight: 700;
-      color: #3b2f8f;
-      text-shadow: 0 0 5px #a18cd1;
+      color: #4f46e5;
     }
 
     .carousel-container {
       position: relative;
-      overflow: hidden;
     }
 
     .carousel-card-container {
       display: flex;
-      overflow-x: auto;
+      overflow: hidden;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
-      gap: 1rem;
-      padding-bottom: 0.5rem;
     }
 
     .carousel-card {
@@ -119,30 +110,26 @@
       background: white;
       padding: 1rem;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.12);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       scroll-snap-align: start;
-      opacity: 0;
-      animation: fadeIn 0.8s forwards;
       transition: transform 0.3s ease;
+      cursor: grab;
     }
 
     .carousel-card:hover {
       transform: scale(1.03);
-      box-shadow: 0 8px 20px rgb(0 0 0 / 0.18);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     }
 
     .carousel-card img {
       width: 100%;
       border-radius: 10px;
       margin-top: 1rem;
-      user-select: none;
-      pointer-events: none;
+      transition: transform 0.3s ease;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+    .carousel-card img:hover {
+      transform: scale(1.05);
     }
 
     .arrow-button {
@@ -153,52 +140,29 @@
       border: 1px solid #ccc;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 1.3rem;
-      width: 2.6rem;
-      height: 2.6rem;
+      font-size: 1.2rem;
+      width: 2.5rem;
+      height: 2.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #4f46e5;
-      transition: transform 0.2s ease, background-color 0.3s ease;
-      user-select: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      transition: background-color 0.3s, color 0.3s;
       z-index: 10;
-      box-shadow: 0 2px 6px rgb(79 70 229 / 0.3);
     }
 
     .arrow-button:hover {
       background-color: #4f46e5;
       color: white;
-      transform: translateY(-50%) scale(1.2);
-      box-shadow: 0 6px 12px rgb(79 70 229 / 0.5);
+      border-color: #4f46e5;
     }
 
     .arrow-left {
-      left: -2.6rem;
+      left: -3rem;
     }
 
     .arrow-right {
-      right: -2.6rem;
-    }
-
-    /* Mobile toggle button for arrows */
-    .toggle-arrows-btn {
-      display: none;
-      margin: 0 0 1rem auto;
-      padding: 0.4rem 0.8rem;
-      background: #4f46e5;
-      border: none;
-      border-radius: 5px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      user-select: none;
-      box-shadow: 0 3px 8px rgb(79 70 229 / 0.6);
-      transition: background-color 0.3s ease;
-      font-size: 0.9rem;
-    }
-    .toggle-arrows-btn:hover {
-      background-color: #3b2f8f;
+      right: -3rem;
     }
 
     footer {
@@ -226,14 +190,12 @@
         padding: 1rem;
       }
 
-      /* Hide arrows by default on mobile */
-      .arrow-button {
-        display: none;
+      .arrow-left {
+        left: 0.5rem;
       }
 
-      /* Show toggle button on mobile */
-      .toggle-arrows-btn {
-        display: inline-block;
+      .arrow-right {
+        right: 0.5rem;
       }
     }
   </style>
@@ -246,287 +208,149 @@
     </header>
 
     <div class="tabs">
-      <button class="tab-button active" onclick="switchTab(event, 'about')"
-        ><i class="fas fa-lightbulb"></i> About</button
-      >
-      <button class="tab-button" onclick="switchTab(event, 'experience')"
-        ><i class="fas fa-briefcase"></i> Experience</button
-      >
-      <button class="tab-button" onclick="switchTab(event, 'projects')"
-        ><i class="fas fa-laptop"></i> Projects</button
-      >
-      <button class="tab-button" onclick="switchTab(event, 'contact')"
-        ><i class="fas fa-address-card"></i> Contact</button
-      >
+      <button class="tab-button active" onclick="switchTab(event, 'about')"><i class="fas fa-lightbulb"></i> About</button>
+      <button class="tab-button" onclick="switchTab(event, 'experience')"><i class="fas fa-briefcase"></i> Experience</button>
+      <button class="tab-button" onclick="switchTab(event, 'projects')"><i class="fas fa-laptop"></i> Projects</button>
+      <button class="tab-button" onclick="switchTab(event, 'contact')"><i class="fas fa-address-card"></i> Contact</button>
     </div>
 
     <div id="about" class="tab-content active">
-      <p>
-        Hi! I’m Shriya, a tech-driven problem solver with experience across
-        data analytics, embedded systems, and product strategy. I love
-        building intuitive solutions that blend innovation with
-        user-centered design. I'm currently working at Deloitte in analytics
-        and exploring opportunities to pivot into product management.
-      </p>
-      <p>
-        I’ve led cross-functional teams, built real-time systems, and
-        launched platforms during entrepreneurship programs — all while
-        keeping the user front and center.
-      </p>
+      <p>Hi! I’m Shriya, a tech-driven problem solver with experience across data analytics, embedded systems, and product strategy. I love building intuitive solutions that blend innovation with user-centered design. I'm currently working at Deloitte in analytics and exploring opportunities to pivot into product management.</p>
+      <p>I’ve led cross-functional teams, built real-time systems, and launched platforms during entrepreneurship programs — all while keeping the user front and center.</p>
     </div>
 
     <div id="experience" class="tab-content">
-      <!-- Deloitte Carousel -->
-      <div class="carousel-wrapper" data-carousel>
+      <div class="carousel-wrapper">
         <div class="carousel-title">Deloitte</div>
-        <button
-          class="arrow-button arrow-left"
-          aria-label="Previous slide"
-          onclick="slide(this, -1)"
-        >
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button
-          class="arrow-button arrow-right"
-          aria-label="Next slide"
-          onclick="slide(this, 1)"
-        >
-          <i class="fas fa-chevron-right"></i>
-        </button>
         <div class="carousel-container">
+          <button class="arrow-button arrow-left" onclick="slide(this, -1)">&#8592;</button>
           <div class="carousel-card-container">
             <div class="carousel-card">
               <h3>CRM & Analytics</h3>
-              <p>
-                Working in customer & marketing analytics with Salesforce.
-                Created dashboards & actionable insights.
-              </p>
-              <img src="/images/deloitte.png" alt="Deloitte CRM" />
+              <p>Working in customer & marketing analytics with Salesforce. Created dashboards & actionable insights.</p>
+              <img src="/images/deloitte.png" alt="Deloitte CRM">
             </div>
             <div class="carousel-card">
               <h3>Client Collaboration</h3>
-              <p>
-                Worked closely with global clients to refine reporting and
-                enhance customer strategy using data.
-              </p>
-              <img src="/images/deloitte2.png" alt="Client work" />
+              <p>Worked closely with global clients to refine reporting and enhance customer strategy using data.</p>
+              <img src="/images/deloitte2.png" alt="Client work">
             </div>
             <div class="carousel-card">
               <h3>Recognition</h3>
-              <p>
-                Received early career recognition for analytical rigor and
-                delivery excellence.
-              </p>
-              <img src="/images/deloitte3.png" alt="Award" />
+              <p>Received early career recognition for analytical rigor and delivery excellence.</p>
+              <img src="/images/deloitte3.png" alt="Award">
             </div>
           </div>
+          <button class="arrow-button arrow-right" onclick="slide(this, 1)">&#8594;</button>
         </div>
       </div>
 
-      <!-- TATA Elxsi Carousel -->
-      <div class="carousel-wrapper" data-carousel>
+      <div class="carousel-wrapper">
         <div class="carousel-title">TATA Elxsi</div>
-        <button
-          class="arrow-button arrow-left"
-          aria-label="Previous slide"
-          onclick="slide(this, -1)"
-        >
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button
-          class="arrow-button arrow-right"
-          aria-label="Next slide"
-          onclick="slide(this, 1)"
-        >
-          <i class="fas fa-chevron-right"></i>
-        </button>
         <div class="carousel-container">
+          <button class="arrow-button arrow-left" onclick="slide(this, -1)">&#8592;</button>
           <div class="carousel-card-container">
             <div class="carousel-card">
               <h3>ADAS CNN Models</h3>
-              <p>
-                Led development of precision CNN models in ADAS domain,
-                boosting accuracy by 35%.
-              </p>
-              <img src="/images/tataelxsi.png" alt="ADAS" />
+              <p>Led development of precision CNN models in ADAS domain, boosting accuracy by 35%.</p>
+              <img src="/images/tataelxsi.png" alt="ADAS">
             </div>
             <div class="carousel-card">
               <h3>Medical Device IoT</h3>
-              <p>
-                Built smart ventilator prototype and teardown documentation for
-                medical systems.
-              </p>
-              <img src="/images/tataelxsi2.png" alt="Medical IoT" />
+              <p>Built smart ventilator prototype and teardown documentation for medical systems.</p>
+              <img src="/images/tataelxsi2.png" alt="Medical IoT">
             </div>
             <div class="carousel-card">
               <h3>Embedded Systems Report</h3>
               <p>Drafted 40+ page detailed teardown report with complete PCB analysis.</p>
-              <img src="/images/tataelxsi3.png" alt="Teardown Report" />
+              <img src="/images/tataelxsi3.png" alt="Teardown Report">
             </div>
           </div>
+          <button class="arrow-button arrow-right" onclick="slide(this, 1)">&#8594;</button>
         </div>
       </div>
-
-      <!-- Microsoft Carousel -->
-      <div class="carousel-wrapper" data-carousel>
-        <div class="carousel-title">Microsoft</div>
-        <button
-          class="arrow-button arrow-left"
-          aria-label="Previous slide"
-          onclick="slide(this, -1)"
-        >
-          <i class="fab fa-microsoft"></i>
-        </button>
-        <button
-          class="arrow-button arrow-right"
-          aria-label="Next slide"
-          onclick="slide(this, 1)"
-        >
-          <i class="fab fa-microsoft"></i>
-        </button>
-        <div class="carousel-container">
-          <div class="carousel-card-container">
-            <div class="carousel-card">
-              <h3>Cloud Solutions</h3>
-              <p>
-                Contributed to Azure cloud integration projects, optimizing
-                deployment pipelines.
-              </p>
-              <img src="/images/microsoft1.png" alt="Azure Cloud" />
-            </div>
-            <div class="carousel-card">
-              <h3>Power BI Dashboards</h3>
-              <p>
-                Created interactive business intelligence dashboards to
-                improve reporting efficiency.
-              </p>
-              <img src="/images/microsoft2.png" alt="Power BI" />
-            </div>
-            <div class="carousel-card">
-              <h3>Team Collaboration</h3>
-              <p>
-                Facilitated cross-team workshops to enhance agile
-                development practices.
-              </p>
-              <img src="/images/microsoft3.png" alt="Team Meeting" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Startup Stride Carousel -->
-      <div class="carousel-wrapper" data-carousel>
-        <div class="carousel-title">Startup Stride</div>
-        <button
-          class="arrow-button arrow-left"
-          aria-label="Previous slide"
-          onclick="slide(this, -1)"
-        >
-          <i class="fas fa-rocket"></i>
-        </button>
-        <button
-          class="arrow-button arrow-right"
-          aria-label="Next slide"
-          onclick="slide(this, 1)"
-        >
-          <i class="fas fa-rocket"></i>
-        </button>
-        <div class="carousel-container">
-          <div class="carousel-card-container">
-            <div class="carousel-card">
-              <h3>Product Management</h3>
-              <p>
-                Led UI/UX design and product strategy for AI-powered startup
-                job platform.
-              </p>
-              <img src="/images/stride1.png" alt="Product Management" />
-            </div>
-            <div class="carousel-card">
-              <h3>Business Model</h3>
-              <p>
-                Developed innovative business model frameworks to attract
-                investors.
-              </p>
-              <img src="/images/stride2.png" alt="Business Model" />
-            </div>
-            <div class="carousel-card">
-              <h3>Pitch & Recognition</h3>
-              <p>
-                Presented at FKCCI competition, placing in top 30 startups
-                with positive feedback.
-              </p>
-              <img src="/images/stride3.png" alt="Pitch Event" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button class="toggle-arrows-btn" aria-pressed="false" aria-label="Toggle carousel arrows" onclick="toggleArrows()">
-        Show Arrows
-      </button>
     </div>
 
-    <div id="projects" class="tab-content">Projects go here...</div>
-    <div id="contact" class="tab-content">Contact goes here...</div>
+    <div id="projects" class="tab-content">
+      <div class="carousel-wrapper">
+        <div class="carousel-title">Recipe App</div>
+        <div class="carousel-container">
+          <button class="arrow-button arrow-left" onclick="slide(this, -1)">&#8592;</button>
+          <div class="carousel-card-container">
+            <div class="carousel-card">
+              <h3>Recipe List</h3>
+              <p>Displays all recipes with images and easy navigation.</p>
+              <img src="/images/recipe-list.png" alt="Recipe List">
+            </div>
+            <div class="carousel-card">
+              <h3>Recipe Details</h3>
+              <p>Detailed view with ingredients, steps, and nutrition info.</p>
+              <img src="/images/recipe-details.png" alt="Recipe Details">
+            </div>
+            <div class="carousel-card">
+              <h3>Wishlist</h3>
+              <p>Add favorite recipes to wishlist for quick access.</p>
+              <img src="/images/recipe-wishlist.png" alt="Wishlist">
+            </div>
+            <div class="carousel-card">
+              <h3>Add New Recipe</h3>
+              <p>User-friendly form to add new recipes with images.</p>
+              <img src="/images/recipe-add.png" alt="Add Recipe">
+            </div>
+          </div>
+          <button class="arrow-button arrow-right" onclick="slide(this, 1)">&#8594;</button>
+        </div>
+      </div>
+
+      <div class="carousel-wrapper">
+        <div class="carousel-title">Hotel Booking Page</div>
+        <div class="carousel-container">
+          <button class="arrow-button arrow-left" onclick="slide(this, -1)">&#8592;</button>
+          <div class="carousel-card-container">
+            <div class="carousel-card">
+              <h3>Hotel List</h3>
+              <p>Displays hotels with images, pricing, and ratings.</p>
+              <img src="/images/hotel-list.png" alt="Hotel List">
+            </div>
+            <div class="carousel-card">
+              <h3>Availability Check</h3>
+              <p>Users can select dates and check room availability.</p>
+              <img src="/images/hotel-availability.png" alt="Availability">
+            </div>
+            <div class="carousel-card">
+              <h3>Booking Form</h3>
+              <p>Simple booking form with guest details and payment options.</p>
+              <img src="/images/hotel-booking.png" alt="Booking Form">
+            </div>
+          </div>
+          <button class="arrow-button arrow-right" onclick="slide(this, 1)">&#8594;</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact" class="tab-content">
+      <p>Feel free to reach out via email: <a href="mailto:shriya@example.com">shriya@example.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/shriyadesai" target="_blank">linkedin.com/in/shriyadesai</a></p>
+    </div>
 
     <footer>
-      © 2025 Shriya Desai | Portfolio. Inspired by innovation in healthcare &
-      technology.
+      © 2025 Shriya Desai | Portfolio. Inspired by innovation in healthcare & technology.
     </footer>
   </div>
 
   <script>
-    // Tab switching
     function switchTab(event, tabId) {
-      document.querySelectorAll('.tab-content').forEach((tab) => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
-      document.querySelectorAll('.tab-button').forEach((btn) => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
       event.currentTarget.classList.add('active');
     }
 
-    // Slide function
     function slide(button, direction) {
-      const carouselWrapper = button.closest('[data-carousel]');
-      const container = carouselWrapper.querySelector('.carousel-card-container');
+      const container = button.parentElement.querySelector('.carousel-card-container');
       const width = container.offsetWidth;
       container.scrollBy({ left: width * direction, behavior: 'smooth' });
     }
-
-    // Toggle arrows on mobile
-    function toggleArrows() {
-      const experienceTab = document.getElementById('experience');
-      const arrows = experienceTab.querySelectorAll('.arrow-button');
-      const toggleBtn = event.currentTarget;
-
-      const areVisible = arrows[0].style.display === 'flex';
-
-      arrows.forEach((arrow) => {
-        arrow.style.display = areVisible ? 'none' : 'flex';
-      });
-
-      toggleBtn.textContent = areVisible ? 'Show Arrows' : 'Hide Arrows';
-      toggleBtn.setAttribute('aria-pressed', !areVisible);
-    }
-
-    // On load, hide arrows on mobile (handled by CSS)
-    // but if user resizes, hide/show arrows accordingly
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= 768) {
-        // hide arrows, reset toggle button
-        document.querySelectorAll('.arrow-button').forEach((el) => (el.style.display = 'none'));
-        const toggleBtn = document.querySelector('.toggle-arrows-btn');
-        toggleBtn.textContent = 'Show Arrows';
-        toggleBtn.setAttribute('aria-pressed', false);
-      } else {
-        // show arrows by default on desktop
-        document.querySelectorAll('.arrow-button').forEach((el) => (el.style.display = 'flex'));
-        const toggleBtn = document.querySelector('.toggle-arrows-btn');
-        toggleBtn.style.display = 'none';
-      }
-    });
-
-    // Trigger resize on page load to set correct state
-    window.dispatchEvent(new Event('resize'));
   </script>
 </body>
 </html>
