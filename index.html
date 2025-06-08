@@ -6,202 +6,142 @@
   <title>Shriya Desai | Product Manager Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* Reset & base */
+    :root {
+      --bg-gradient: linear-gradient(270deg, #a18cd1, #fbc2eb, #f6d365, #fda085);
+      --text-color: #333;
+      --light-bg: #ffffffcc;
+      --dark-bg: #1a1a1a;
+      --dark-text: #eee;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
-      background: linear-gradient(270deg, #a18cd1, #fbc2eb, #f6d365, #fda085);
+      color: var(--text-color);
+      background: var(--bg-gradient);
       background-size: 600% 600%;
-      animation: gradientBG 60s ease infinite;
-      transition: background 0.5s, color 0.5s;
-      cursor: default;
+      animation: gradient 60s ease infinite;
+      transition: background 0.3s, color 0.3s;
     }
-    @keyframes gradientBG {
+
+    @keyframes gradient {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    /* Dark mode */
-    body.dark {
-      background: #121212;
-      color: #eee;
+    .dark-mode {
+      background: #111;
+      color: var(--dark-text);
     }
 
-    /* Container */
+    .dark-mode .tab-content,
+    .dark-mode .carousel-card {
+      background-color: #222;
+      color: var(--dark-text);
+    }
+
     .container {
       max-width: 1000px;
       margin: auto;
       padding: 2rem;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
 
-    /* Header with typing animation */
     header {
       text-align: center;
       margin-bottom: 2rem;
-      position: relative;
     }
+
     header h1 {
       font-size: 2.5rem;
-      margin-bottom: 0.25rem;
-      font-weight: 700;
-      min-height: 3rem;
     }
-    header p {
-      font-size: 1.25rem;
-      color: #555;
-      height: 1.5rem;
-      min-height: 1.5rem;
+
+    .typing span {
+      border-right: 2px solid;
+      animation: blink 0.8s infinite;
     }
-    header p span {
-      border-right: 2px solid #333;
-      animation: blinkCaret 0.75s step-end infinite;
-      display: inline-block;
-      vertical-align: bottom;
-    }
-    body.dark header p span {
-      border-color: #eee;
-    }
-    @keyframes blinkCaret {
-      from, to { border-color: transparent; }
+
+    @keyframes blink {
+      0% { border-color: transparent; }
       50% { border-color: currentColor; }
+      100% { border-color: transparent; }
     }
 
-    /* Dark mode toggle */
-    .dark-toggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: #ffffffcc;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      padding: 0.3rem 1rem;
-      font-weight: 600;
-      transition: background 0.3s;
-      z-index: 1000;
-    }
-    .dark-toggle:hover {
-      background: #4f46e5cc;
-      color: white;
-    }
-    body.dark .dark-toggle {
-      background: #222222cc;
-      color: #eee;
-    }
-    body.dark .dark-toggle:hover {
-      background: #7c3aedcc;
-    }
-
-    /* Tabs */
     .tabs {
       display: flex;
       gap: 1rem;
       margin-bottom: 1rem;
       justify-content: center;
       flex-wrap: wrap;
-      user-select: none;
     }
+
     .tab-button {
       padding: 0.6rem 1rem;
-      background: #ffffffcc;
+      background: var(--light-bg);
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-weight: 600;
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.3s;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    .tab-button i {
-      font-size: 1rem;
-    }
+
     .tab-button.active {
       background: #4f46e5;
       color: white;
     }
-    body.dark .tab-button {
-      background: #222222cc;
-      color: #ddd;
-    }
-    body.dark .tab-button.active {
-      background: #7c3aed;
-      color: white;
-    }
 
-    /* Tab content */
     .tab-content {
       display: none;
-      background: rgba(255, 255, 255, 0.8);
       padding: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
-      animation: fadeIn 0.6s ease forwards;
-      min-height: 220px;
+      background: rgba(255, 255, 255, 0.85);
+      animation: fadeIn 0.6s ease-in;
     }
+
     .tab-content.active {
       display: block;
     }
-    body.dark .tab-content {
-      background: #222222dd;
-      color: #ddd;
-      box-shadow: 0 4px 12px rgb(255 255 255 / 0.1);
-    }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Carousel styling */
     .carousel-wrapper {
       margin-bottom: 3rem;
     }
+
     .carousel-title {
       font-size: 1.5rem;
       margin-bottom: 1rem;
-      font-weight: 700;
     }
+
     .carousel-container {
       position: relative;
     }
+
     .carousel-card-container {
       display: flex;
       overflow: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      scroll-padding-left: 0;
     }
+
     .carousel-card {
       flex: 0 0 100%;
       background: white;
       padding: 1rem;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      scroll-snap-align: start;
-      transition: transform 0.3s ease;
-      user-select: none;
     }
+
     .carousel-card img {
       width: 100%;
       border-radius: 10px;
       margin-top: 1rem;
-      user-select: none;
-      pointer-events: none;
-    }
-    body.dark .carousel-card {
-      background: #333;
-      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
-      color: #eee;
     }
 
-    /* Arrows */
     .arrow-button {
       position: absolute;
       top: 50%;
@@ -211,186 +151,149 @@
       border-radius: 50%;
       cursor: pointer;
       font-size: 1.2rem;
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2rem;
+      height: 2rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background-color 0.3s, border-color 0.3s;
-      user-select: none;
-      z-index: 10;
-    }
-    .arrow-left {
-      left: -3rem;
-    }
-    .arrow-right {
-      right: -3rem;
-    }
-    .arrow-button:hover {
-      background-color: #4f46e5;
-      color: white;
-      border-color: #4f46e5;
-    }
-    body.dark .arrow-button {
-      background-color: #222222;
-      border-color: #555;
-      color: #ddd;
-    }
-    body.dark .arrow-button:hover {
-      background-color: #7c3aed;
-      border-color: #7c3aed;
-      color: white;
     }
 
-    /* Footer */
+    .arrow-left {
+      left: -2rem;
+    }
+
+    .arrow-right {
+      right: -2rem;
+    }
+
+    .toggle-dark-mode {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      cursor: pointer;
+      z-index: 100;
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
       font-size: 0.875rem;
-      color: #555;
-      user-select: none;
-    }
-    body.dark footer {
-      color: #aaa;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       header h1 {
         font-size: 2rem;
       }
+
       .tab-button {
         font-size: 0.875rem;
-        padding: 0.5rem 0.75rem;
       }
-      .tab-content {
-        padding: 1rem;
-        min-height: auto;
-      }
-      .container {
-        padding: 1rem;
-      }
-      .arrow-left {
-        left: 5px;
-      }
-      .arrow-right {
-        right: 5px;
+
+      .carousel-card {
+        padding: 0.8rem;
       }
     }
   </style>
 </head>
 <body>
-  <button class="dark-toggle" aria-label="Toggle dark mode">🌙</button>
-
+  <div class="toggle-dark-mode" onclick="toggleDarkMode()">🌓 Toggle</div>
   <div class="container">
     <header>
-      <h1>Shriya Desai</h1>
-      <p><span id="typed-text"></span></p>
+      <h1 class="typing">Hi, I'm <span id="typewriter"></span></h1>
+      <p>Aspiring Product Manager | Tech & Strategy Enthusiast</p>
     </header>
 
-    <div class="tabs" role="tablist">
-      <button class="tab-button active" role="tab" aria-selected="true" aria-controls="about" id="tab-about" onclick="switchTab(event, 'about')">
-        <i class="fas fa-lightbulb"></i> About
-      </button>
-      <button class="tab-button" role="tab" aria-selected="false" aria-controls="experience" id="tab-experience" onclick="switchTab(event, 'experience')">
-        <i class="fas fa-briefcase"></i> Experience
-      </button>
-      <button class="tab-button" role="tab" aria-selected="false" aria-controls="projects" id="tab-projects" onclick="switchTab(event, 'projects')">
-        <i class="fas fa-laptop"></i> Projects
-      </button>
-      <button class="tab-button" role="tab" aria-selected="false" aria-controls="contact" id="tab-contact" onclick="switchTab(event, 'contact')">
-        <i class="fas fa-address-card"></i> Contact
-      </button>
+    <div class="tabs">
+      <button class="tab-button active" onclick="switchTab(event, 'about')"><i class="fas fa-lightbulb"></i> About</button>
+      <button class="tab-button" onclick="switchTab(event, 'experience')"><i class="fas fa-briefcase"></i> Experience</button>
+      <button class="tab-button" onclick="switchTab(event, 'projects')"><i class="fas fa-laptop"></i> Projects</button>
+      <button class="tab-button" onclick="switchTab(event, 'contact')"><i class="fas fa-address-card"></i> Contact</button>
     </div>
 
-    <div id="about" class="tab-content active" role="tabpanel" aria-labelledby="tab-about">
+    <div id="about" class="tab-content active">
       <p>Hi! I’m Shriya, a tech-driven problem solver with experience across data analytics, embedded systems, and product strategy. I love building intuitive solutions that blend innovation with user-centered design. I'm currently working at Deloitte in analytics and exploring opportunities to pivot into product management.</p>
-      <p>I’ve led cross-functional teams, built real-time systems, and launched platforms during entrepreneurship programs — all while keeping the user front and center.</p>
     </div>
 
-    <div id="experience" class="tab-content" role="tabpanel" aria-labelledby="tab-experience">
+    <div id="experience" class="tab-content">
       <div class="carousel-wrapper">
         <div class="carousel-title">Deloitte</div>
         <div class="carousel-container">
-          <button class="arrow-button arrow-left" aria-label="Previous Deloitte Experience" onclick="slide(this, -1)">&#8592;</button>
+          <button class="arrow-button arrow-left" onclick="slide(this, -1)">&#8592;</button>
           <div class="carousel-card-container">
             <div class="carousel-card">
               <h3>CRM & Analytics</h3>
               <p>Working in customer & marketing analytics with Salesforce. Created dashboards & actionable insights.</p>
-              <img src="/images/deloitte.png" alt="Deloitte CRM" />
+              <img src="/images/deloitte.png" alt="Deloitte CRM">
             </div>
             <div class="carousel-card">
               <h3>Client Collaboration</h3>
               <p>Worked closely with global clients to refine reporting and enhance customer strategy using data.</p>
-              <img src="/images/deloitte2.png" alt="Client work" />
+              <img src="/images/deloitte2.png" alt="Client work">
             </div>
             <div class="carousel-card">
               <h3>Recognition</h3>
               <p>Received early career recognition for analytical rigor and delivery excellence.</p>
-              <img src="/images/deloitte3.png" alt="Award" />
+              <img src="/images/deloitte3.png" alt="Award">
             </div>
           </div>
-          <button class="arrow-button arrow-right" aria-label="Next Deloitte Experience" onclick="slide(this, 1)">&#8594;</button>
+          <button class="arrow-button arrow-right" onclick="slide(this, 1)">&#8594;</button>
         </div>
       </div>
 
       <div class="carousel-wrapper">
         <div class="carousel-title">TATA Elxsi</div>
         <div class="carousel-container">
-          <button class="arrow-button arrow-left" aria-label="Previous TATA Elxsi Experience" onclick="slide(this, -1)">&#8592;</button>
+          <button class="arrow-button arrow-left" onclick="slide(this, -1)">&#8592;</button>
           <div class="carousel-card-container">
             <div class="carousel-card">
               <h3>ADAS CNN Models</h3>
               <p>Led development of precision CNN models in ADAS domain, boosting accuracy by 35%.</p>
-              <img src="/images/tataelxsi.png" alt="ADAS" />
+              <img src="/images/tataelxsi.png" alt="ADAS">
             </div>
             <div class="carousel-card">
               <h3>Medical Device IoT</h3>
               <p>Built smart ventilator prototype and teardown documentation for medical systems.</p>
-              <img src="/images/tataelxsi2.png" alt="Medical IoT" />
+              <img src="/images/tataelxsi2.png" alt="Medical IoT">
             </div>
             <div class="carousel-card">
               <h3>Embedded Systems Report</h3>
               <p>Drafted 40+ page detailed teardown report with complete PCB analysis.</p>
-              <img src="/images/tataelxsi3.png" alt="Teardown Report" />
+              <img src="/images/tataelxsi3.png" alt="Teardown Report">
             </div>
           </div>
-          <button class="arrow-button arrow-right" aria-label="Next TATA Elxsi Experience" onclick="slide(this, 1)">&#8594;</button>
+          <button class="arrow-button arrow-right" onclick="slide(this, 1)">&#8594;</button>
         </div>
       </div>
     </div>
 
-    <div id="projects" class="tab-content" role="tabpanel" aria-labelledby="tab-projects">
+    <div id="projects" class="tab-content">
       <div class="carousel-wrapper">
-        <div class="carousel-title">Projects</div>
+        <div class="carousel-title">Stride - Startup Discovery</div>
         <div class="carousel-container">
-          <button class="arrow-button arrow-left" aria-label="Previous Project" onclick="slide(this, -1)">&#8592;</button>
+          <button class="arrow-button arrow-left" onclick="slide(this, -1)">&#8592;</button>
           <div class="carousel-card-container">
             <div class="carousel-card">
-              <h3>Ship Lift System</h3>
-              <p>Developed a prototype for the Indian Navy’s dockyard ship lift system, improving local manufacturing under ‘Make in India’.</p>
-              <img src="/images/shiplift.png" alt="Ship Lift System" />
+              <h3>AI-driven Discovery</h3>
+              <p>Built a platform to connect with funded startups using AI and market intel. Made it to FKCCI top 30.</p>
+              <img src="/images/stride.png" alt="Stride">
             </div>
             <div class="carousel-card">
-              <h3>Stride - Startup AI Platform</h3>
-              <p>Led product design for ‘Stride,’ an AI-powered platform streamlining startup hiring and networking.</p>
-              <img src="/images/stride.png" alt="Stride Startup Platform" />
-            </div>
-            <div class="carousel-card">
-              <h3>Recipe Application</h3>
-              <p>Created a UI-rich recipe app featuring horizontal section navigation, wishlist, and easy additions.</p>
-              <img src="/images/recipeapp.png" alt="Recipe App" />
+              <h3>UI/UX & Strategy</h3>
+              <p>Led UI/UX framework and value proposition mapping as Product Manager for the team.</p>
+              <img src="/images/stride2.png" alt="UX">
             </div>
           </div>
-          <button class="arrow-button arrow-right" aria-label="Next Project" onclick="slide(this, 1)">&#8594;</button>
+          <button class="arrow-button arrow-right" onclick="slide(this, 1)">&#8594;</button>
         </div>
       </div>
     </div>
 
-    <div id="contact" class="tab-content" role="tabpanel" aria-labelledby="tab-contact">
-      <h3>Contact Me</h3>
-      <p>You can reach me at <a href="mailto:shriya@example.com">shriya@example.com</a></p>
-      <p>Or find me on <a href="https://linkedin.com/in/shriya-desai" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+    <div id="contact" class="tab-content">
+      <p>Let's connect! Email me at: <a href="mailto:shriyadesai@email.com">shriyadesai@email.com</a></p>
     </div>
 
     <footer>
@@ -399,53 +302,45 @@
   </div>
 
   <script>
-    // Tab switching
     function switchTab(event, tabId) {
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
-
-      document.querySelectorAll('.tab-button').forEach(btn => {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-selected', 'false');
-      });
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
       event.currentTarget.classList.add('active');
-      event.currentTarget.setAttribute('aria-selected', 'true');
     }
 
-    // Carousel slide logic
     function slide(button, direction) {
       const container = button.parentElement.querySelector('.carousel-card-container');
       const width = container.offsetWidth;
       container.scrollBy({ left: width * direction, behavior: 'smooth' });
     }
 
-    // Typing animation for header
-    const typingText = "Aspiring Product Manager | Tech & Strategy Enthusiast";
-    const typedElement = document.getElementById('typed-text');
-    let index = 0;
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    // Typing effect
+    const words = ['Shriya Desai', 'a Builder', 'a Product Enthusiast'];
+    let i = 0, j = 0, current = '', isDeleting = false;
 
     function type() {
-      if (index <= typingText.length) {
-        typedElement.textContent = typingText.slice(0, index);
-        index++;
-        setTimeout(type, 80);
+      const typewriter = document.getElementById('typewriter');
+      current = words[i];
+
+      if (!isDeleting && j <= current.length) {
+        typewriter.textContent = current.substring(0, j++);
+        setTimeout(type, 120);
+      } else if (isDeleting && j >= 0) {
+        typewriter.textContent = current.substring(0, j--);
+        setTimeout(type, 60);
       } else {
-        // After typing completes, blink caret continues indefinitely with CSS
+        isDeleting = !isDeleting;
+        if (!isDeleting) i = (i + 1) % words.length;
+        setTimeout(type, 1000);
       }
     }
-    type();
 
-    // Dark mode toggle
-    const darkToggleBtn = document.querySelector('.dark-toggle');
-    darkToggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      // Update button icon
-      if(document.body.classList.contains('dark')) {
-        darkToggleBtn.textContent = '☀️';
-      } else {
-        darkToggleBtn.textContent = '🌙';
-      }
-    });
+    type();
   </script>
 </body>
 </html>
