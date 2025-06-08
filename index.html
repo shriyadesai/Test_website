@@ -82,30 +82,15 @@
       margin-top: 1rem;
     }
 
-    .carousel img {
+    .carousel-card {
+      margin-bottom: 2rem;
+    }
+
+    .carousel-card img {
       max-width: 100%;
       height: auto;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .carousel-buttons {
-      display: flex;
-      justify-content: center;
-      margin-top: 0.5rem;
-      gap: 0.5rem;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: gray;
-      cursor: pointer;
-    }
-
-    .dot.active {
-      background: #4f46e5;
     }
 
     footer {
@@ -143,10 +128,10 @@
     </header>
 
     <div class="tabs">
-      <button class="tab-button active" onclick="switchTab('about')"><i class="fas fa-lightbulb"></i> About</button>
-      <button class="tab-button" onclick="switchTab('experience')"><i class="fas fa-briefcase"></i> Experience</button>
-      <button class="tab-button" onclick="switchTab('projects')"><i class="fas fa-laptop"></i> Projects</button>
-      <button class="tab-button" onclick="switchTab('contact')"><i class="fas fa-address-card"></i> Contact</button>
+      <button class="tab-button active" onclick="switchTab(event, 'about')"><i class="fas fa-lightbulb"></i> About</button>
+      <button class="tab-button" onclick="switchTab(event, 'experience')"><i class="fas fa-briefcase"></i> Experience</button>
+      <button class="tab-button" onclick="switchTab(event, 'projects')"><i class="fas fa-laptop"></i> Projects</button>
+      <button class="tab-button" onclick="switchTab(event, 'contact')"><i class="fas fa-address-card"></i> Contact</button>
     </div>
 
     <div id="about" class="tab-content active">
@@ -155,12 +140,42 @@
     </div>
 
     <div id="experience" class="tab-content">
-      <div class="carousel" data-items='[{"title":"Analyst, Deloitte","description":"Working in customer & marketing analytics with CRM tools like Salesforce. Built dashboards, optimized reporting, and collaborated with client teams for actionable insights.","image":"/images/deloitte.png"},{"title":"Intern, TATA Elxsi","description":"Led CNN model development in ADAS domain; built IoT prototypes in the medical devices division; wrote 40+ page teardown reports.","image":"/images/tataelxsi.png"},{"title":"Product Manager (Stride)","description":"Led UI/UX and strategy for an AI startup-matching platform. Finalist in FKCCI competition; impressed Microsoft panel.","image":"/images/stride.png"}]'>
+      <div class="carousel">
+        <div class="carousel-card">
+          <h3>Analyst, Deloitte</h3>
+          <p>Working in customer & marketing analytics with CRM tools like Salesforce. Built dashboards, optimized reporting, and collaborated with client teams for actionable insights.</p>
+          <img src="/images/deloitte.png" alt="Deloitte">
+        </div>
+        <div class="carousel-card">
+          <h3>Intern, TATA Elxsi</h3>
+          <p>Led CNN model development in ADAS domain; built IoT prototypes in the medical devices division; wrote 40+ page teardown reports.</p>
+          <img src="/images/tataelxsi.png" alt="TATA Elxsi">
+        </div>
+        <div class="carousel-card">
+          <h3>Product Manager (Stride)</h3>
+          <p>Led UI/UX and strategy for an AI startup-matching platform. Finalist in FKCCI competition; impressed Microsoft panel.</p>
+          <img src="/images/stride.png" alt="Stride">
+        </div>
       </div>
     </div>
 
     <div id="projects" class="tab-content">
-      <div class="carousel" data-items='[{"title":"Ship Lift System","description":"Embedded project for Indian Navy. Built motor control prototype; paper published in IEEE Xplore.","image":"/images/shiplift.png"},{"title":"Street Light Automation","description":"Designed smart night-time vehicle sensing system during college. Saved power and improved road safety.","image":"/images/streetlight.png"},{"title":"Recipe & Hotel Apps","description":"Built responsive web apps with React showcasing full-stack and UI/UX abilities.","image":"/images/apps.png"}]'>
+      <div class="carousel">
+        <div class="carousel-card">
+          <h3>Ship Lift System</h3>
+          <p>Embedded project for Indian Navy. Built motor control prototype; paper published in IEEE Xplore.</p>
+          <img src="/images/shiplift.png" alt="Ship Lift System">
+        </div>
+        <div class="carousel-card">
+          <h3>Street Light Automation</h3>
+          <p>Designed smart night-time vehicle sensing system during college. Saved power and improved road safety.</p>
+          <img src="/images/streetlight.png" alt="Street Light Automation">
+        </div>
+        <div class="carousel-card">
+          <h3>Recipe & Hotel Apps</h3>
+          <p>Built responsive web apps with React showcasing full-stack and UI/UX abilities.</p>
+          <img src="/images/apps.png" alt="Recipe & Hotel Apps">
+        </div>
       </div>
     </div>
 
@@ -179,63 +194,13 @@
   </div>
 
   <script>
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-      });
+    function switchTab(event, tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
 
-      document.querySelectorAll('.tab-button').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      event.target.classList.add('active');
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
     }
-
-    document.querySelectorAll('.carousel').forEach(carousel => {
-      const items = JSON.parse(carousel.getAttribute('data-items'));
-      let index = 0;
-
-      const contentDiv = document.createElement('div');
-      const nav = document.createElement('div');
-      nav.className = 'carousel-buttons';
-
-      function renderSlide() {
-        contentDiv.innerHTML = '';
-        const { title, description, image } = items[index];
-
-        const titleDiv = document.createElement('div');
-        titleDiv.innerHTML = `<h3>${title}</h3>`;
-        const descP = document.createElement('p');
-        descP.textContent = description;
-        const img = document.createElement('img');
-        img.src = image;
-        img.alt = title;
-
-        contentDiv.appendChild(titleDiv);
-        contentDiv.appendChild(descP);
-        contentDiv.appendChild(img);
-      }
-
-      function renderDots() {
-        nav.innerHTML = '';
-        for (let i = 0; i < items.length; i++) {
-          const dot = document.createElement('div');
-          dot.className = 'dot' + (i === index ? ' active' : '');
-          dot.addEventListener('click', () => {
-            index = i;
-            renderSlide();
-            renderDots();
-          });
-          nav.appendChild(dot);
-        }
-      }
-
-      renderSlide();
-      renderDots();
-
-      carousel.appendChild(contentDiv);
-      carousel.appendChild(nav);
-    });
   </script>
 </body>
 </html>
