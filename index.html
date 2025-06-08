@@ -77,20 +77,35 @@
       display: block;
     }
 
-    .carousel {
-      text-align: center;
-      margin-top: 1rem;
+    .carousel-wrapper {
+      margin-bottom: 3rem;
+    }
+
+    .carousel-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .carousel-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      scroll-snap-type: x mandatory;
     }
 
     .carousel-card {
-      margin-bottom: 2rem;
+      flex: 0 0 90%;
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      scroll-snap-align: start;
     }
 
     .carousel-card img {
-      max-width: 100%;
-      height: auto;
+      width: 100%;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 1rem;
     }
 
     footer {
@@ -140,41 +155,101 @@
     </div>
 
     <div id="experience" class="tab-content">
-      <div class="carousel">
-        <div class="carousel-card">
-          <h3>Analyst, Deloitte</h3>
-          <p>Working in customer & marketing analytics with CRM tools like Salesforce. Built dashboards, optimized reporting, and collaborated with client teams for actionable insights.</p>
-          <img src="/images/deloitte.png" alt="Deloitte">
+      <div class="carousel-wrapper">
+        <div class="carousel-title">Deloitte</div>
+        <div class="carousel-container">
+          <div class="carousel-card">
+            <h3>CRM & Analytics</h3>
+            <p>Working in customer & marketing analytics with Salesforce. Created dashboards & actionable insights.</p>
+            <img src="/images/deloitte.png" alt="Deloitte CRM">
+          </div>
+          <div class="carousel-card">
+            <h3>Client Collaboration</h3>
+            <p>Worked closely with global clients to refine reporting and enhance customer strategy using data.</p>
+            <img src="/images/deloitte2.png" alt="Client work">
+          </div>
+          <div class="carousel-card">
+            <h3>Recognition</h3>
+            <p>Received early career recognition for analytical rigor and delivery excellence.</p>
+            <img src="/images/deloitte3.png" alt="Award">
+          </div>
         </div>
-        <div class="carousel-card">
-          <h3>Intern, TATA Elxsi</h3>
-          <p>Led CNN model development in ADAS domain; built IoT prototypes in the medical devices division; wrote 40+ page teardown reports.</p>
-          <img src="/images/tataelxsi.png" alt="TATA Elxsi">
+      </div>
+
+      <div class="carousel-wrapper">
+        <div class="carousel-title">TATA Elxsi</div>
+        <div class="carousel-container">
+          <div class="carousel-card">
+            <h3>ADAS CNN Models</h3>
+            <p>Led development of precision CNN models in ADAS domain, boosting accuracy by 35%.</p>
+            <img src="/images/tataelxsi.png" alt="ADAS">
+          </div>
+          <div class="carousel-card">
+            <h3>Medical Device IoT</h3>
+            <p>Built smart ventilator prototype and teardown documentation for medical systems.</p>
+            <img src="/images/tataelxsi2.png" alt="Medical IoT">
+          </div>
         </div>
-        <div class="carousel-card">
-          <h3>Product Manager (Stride)</h3>
-          <p>Led UI/UX and strategy for an AI startup-matching platform. Finalist in FKCCI competition; impressed Microsoft panel.</p>
-          <img src="/images/stride.png" alt="Stride">
+      </div>
+
+      <div class="carousel-wrapper">
+        <div class="carousel-title">Stride</div>
+        <div class="carousel-container">
+          <div class="carousel-card">
+            <h3>Startup Platform</h3>
+            <p>Ideated & managed AI-driven startup matching tool. Handled design & value proposition.</p>
+            <img src="/images/stride.png" alt="Stride App">
+          </div>
+          <div class="carousel-card">
+            <h3>UI/UX Leadership</h3>
+            <p>Led frontend design and interactions with job seekers and recruiters.</p>
+            <img src="/images/stride2.png" alt="UIUX">
+          </div>
         </div>
       </div>
     </div>
 
     <div id="projects" class="tab-content">
-      <div class="carousel">
-        <div class="carousel-card">
-          <h3>Ship Lift System</h3>
-          <p>Embedded project for Indian Navy. Built motor control prototype; paper published in IEEE Xplore.</p>
-          <img src="/images/shiplift.png" alt="Ship Lift System">
+      <div class="carousel-wrapper">
+        <div class="carousel-title">Ship Lift System</div>
+        <div class="carousel-container">
+          <div class="carousel-card">
+            <h3>Prototype & Control</h3>
+            <p>Motor control system for naval docks under Make in India initiative.</p>
+            <img src="/images/shiplift.png" alt="Ship Lift">
+          </div>
+          <div class="carousel-card">
+            <h3>IEEE Publication</h3>
+            <p>Published research on synchronized multi-motor lift in IEEE Xplore.</p>
+            <img src="/images/ieee.png" alt="IEEE">
+          </div>
         </div>
-        <div class="carousel-card">
-          <h3>Street Light Automation</h3>
-          <p>Designed smart night-time vehicle sensing system during college. Saved power and improved road safety.</p>
-          <img src="/images/streetlight.png" alt="Street Light Automation">
+      </div>
+
+      <div class="carousel-wrapper">
+        <div class="carousel-title">Street Light Automation</div>
+        <div class="carousel-container">
+          <div class="carousel-card">
+            <h3>Night Sensing System</h3>
+            <p>Built vehicle-sensing system for power-efficient lighting and safety.</p>
+            <img src="/images/streetlight.png" alt="Street Light">
+          </div>
         </div>
-        <div class="carousel-card">
-          <h3>Recipe & Hotel Apps</h3>
-          <p>Built responsive web apps with React showcasing full-stack and UI/UX abilities.</p>
-          <img src="/images/apps.png" alt="Recipe & Hotel Apps">
+      </div>
+
+      <div class="carousel-wrapper">
+        <div class="carousel-title">Web Apps</div>
+        <div class="carousel-container">
+          <div class="carousel-card">
+            <h3>Recipe App</h3>
+            <p>Responsive UI with horizontal layout and recipe management features.</p>
+            <img src="/images/apps.png" alt="Recipe App">
+          </div>
+          <div class="carousel-card">
+            <h3>Hotel Booking</h3>
+            <p>Built booking app with availability logic and custom UI in React.</p>
+            <img src="/images/hotelapp.png" alt="Hotel App">
+          </div>
         </div>
       </div>
     </div>
