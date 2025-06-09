@@ -56,7 +56,14 @@
       font-size: 2.5rem;
     }
 
-    .typing span {
+    .typing-box {
+      min-height: 2.5rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .typing-box span {
       border-right: 2px solid;
       animation: blink 0.8s infinite;
     }
@@ -158,13 +165,8 @@
       justify-content: center;
     }
 
-    .arrow-left {
-      left: -2rem;
-    }
-
-    .arrow-right {
-      right: -2rem;
-    }
+    .arrow-left { left: -2rem; }
+    .arrow-right { right: -2rem; }
 
     .toggle-dark-mode {
       position: fixed;
@@ -178,6 +180,29 @@
       z-index: 100;
     }
 
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .about-photo {
+      flex: 1;
+      text-align: center;
+    }
+
+    .about-photo img {
+      width: 280px;
+      max-width: 100%;
+      border-radius: 15px;
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
@@ -188,11 +213,9 @@
       header h1 {
         font-size: 2rem;
       }
-
       .tab-button {
         font-size: 0.875rem;
       }
-
       .carousel-card {
         padding: 0.8rem;
       }
@@ -203,8 +226,7 @@
   <div class="toggle-dark-mode" onclick="toggleDarkMode()">🌓 Toggle</div>
   <div class="container">
     <header>
-      <h1 class="typing">Hi, I'm <span id="typewriter"></span></h1>
-      <p>Aspiring Product Manager | Tech & Strategy Enthusiast</p>
+      <h1>Shriya Desai</h1>
     </header>
 
     <div class="tabs">
@@ -215,79 +237,71 @@
     </div>
 
     <div id="about" class="tab-content active">
-      <p>Hi! I’m Shriya, a tech-driven problem solver with experience across data analytics, embedded systems, and product strategy. I love building intuitive solutions that blend innovation with user-centered design. I'm currently working at Deloitte in analytics and exploring opportunities to pivot into product management.</p>
+      <div class="about-section">
+        <div class="about-text">
+          <div class="typing-box"><span id="typewriter"></span></div>
+          <p>Hi! I’m Shriya, a tech-driven problem solver with experience across data analytics, embedded systems, and product strategy. I love building intuitive solutions that blend innovation with user-centered design. I'm currently working at Deloitte in analytics and exploring opportunities to pivot into product management.</p>
+        </div>
+        <div class="about-photo">
+          <img src="photo.jpeg" alt="Shriya Desai" />
+        </div>
+      </div>
     </div>
 
     <div id="experience" class="tab-content">
       <div class="carousel-wrapper">
-        <div class="carousel-title">Deloitte</div>
+        <h3 class="carousel-title">Professional Experience</h3>
         <div class="carousel-container">
-          <button class="arrow-button arrow-left" onclick="slide(this, -1)">&#8592;</button>
           <div class="carousel-card-container">
             <div class="carousel-card">
-              <h3>CRM & Analytics</h3>
-              <p>Working in customer & marketing analytics with Salesforce. Created dashboards & actionable insights.</p>
-              <img src="/images/deloitte.png" alt="Deloitte CRM">
+              <h4>Analyst – Deloitte USI</h4>
+              <p><strong>Domain:</strong> Customer & Marketing (Salesforce CRM + Analytics)</p>
+              <p>Collaborated on enterprise CRM implementations and data strategies. Received early recognition award for delivering a customer segmentation dashboard that enhanced campaign efficiency.</p>
             </div>
             <div class="carousel-card">
-              <h3>Client Collaboration</h3>
-              <p>Worked closely with global clients to refine reporting and enhance customer strategy using data.</p>
-              <img src="/images/deloitte2.png" alt="Client work">
+              <h4>Product Intern – Stride</h4>
+              <p>Led the UI/UX and roadmap for an AI-driven platform connecting job seekers with early-stage startups. Product reached Top 30 in the FKCCI Startup Challenge and was reviewed by Microsoft.</p>
             </div>
             <div class="carousel-card">
-              <h3>Recognition</h3>
-              <p>Received early career recognition for analytical rigor and delivery excellence.</p>
-              <img src="/images/deloitte3.png" alt="Award">
+              <h4>Research Intern – TATA Elxsi</h4>
+              <p><strong>Domain:</strong> ADAS & Autonomous Driving</p>
+              <p>Developed CNN models for object detection. Improved model precision by 35%, earning recognition for analytical excellence.</p>
+            </div>
+            <div class="carousel-card">
+              <h4>Intern – TATA Elxsi Medical Devices</h4>
+              <p>Worked on IoT automation for ventilator systems. Authored a detailed teardown and PCB documentation report for improved troubleshooting.</p>
             </div>
           </div>
-          <button class="arrow-button arrow-right" onclick="slide(this, 1)">&#8594;</button>
-        </div>
-      </div>
-
-      <div class="carousel-wrapper">
-        <div class="carousel-title">TATA Elxsi</div>
-        <div class="carousel-container">
-          <button class="arrow-button arrow-left" onclick="slide(this, -1)">&#8592;</button>
-          <div class="carousel-card-container">
-            <div class="carousel-card">
-              <h3>ADAS CNN Models</h3>
-              <p>Led development of precision CNN models in ADAS domain, boosting accuracy by 35%.</p>
-              <img src="/images/tataelxsi.png" alt="ADAS">
-            </div>
-            <div class="carousel-card">
-              <h3>Medical Device IoT</h3>
-              <p>Built smart ventilator prototype and teardown documentation for medical systems.</p>
-              <img src="/images/tataelxsi2.png" alt="Medical IoT">
-            </div>
-            <div class="carousel-card">
-              <h3>Embedded Systems Report</h3>
-              <p>Drafted 40+ page detailed teardown report with complete PCB analysis.</p>
-              <img src="/images/tataelxsi3.png" alt="Teardown Report">
-            </div>
-          </div>
-          <button class="arrow-button arrow-right" onclick="slide(this, 1)">&#8594;</button>
+          <button class="arrow-button arrow-left" onclick="slide(this, -1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="arrow-button arrow-right" onclick="slide(this, 1)"><i class="fas fa-chevron-right"></i></button>
         </div>
       </div>
     </div>
 
     <div id="projects" class="tab-content">
       <div class="carousel-wrapper">
-        <div class="carousel-title">Stride - Startup Discovery</div>
+        <h3 class="carousel-title">Key Projects</h3>
         <div class="carousel-container">
-          <button class="arrow-button arrow-left" onclick="slide(this, -1)">&#8592;</button>
           <div class="carousel-card-container">
             <div class="carousel-card">
-              <h3>AI-driven Discovery</h3>
-              <p>Built a platform to connect with funded startups using AI and market intel. Made it to FKCCI top 30.</p>
-              <img src="/images/stride.png" alt="Stride">
+              <h4>IEEE Ship Lift System</h4>
+              <p>Developed an embedded system prototype for Indian Navy. Published in IEEE Xplore. Focused on synchronized multi-motor control.</p>
             </div>
             <div class="carousel-card">
-              <h3>UI/UX & Strategy</h3>
-              <p>Led UI/UX framework and value proposition mapping as Product Manager for the team.</p>
-              <img src="/images/stride2.png" alt="UX">
+              <h4>Recipe App</h4>
+              <p>Built using React + Firebase. Includes recipe list, wishlist, filtering, and add-new functionality with modern UI.</p>
+            </div>
+            <div class="carousel-card">
+              <h4>Hotel Booking Portal</h4>
+              <p>Created a responsive hotel listing app with date-filtered availability and room details view.</p>
+            </div>
+            <div class="carousel-card">
+              <h4>Startup Mapping Dashboard</h4>
+              <p>Visualized startup ecosystems using Python + Tableau. Helped recruiters track startups by stage, sector, location.</p>
             </div>
           </div>
-          <button class="arrow-button arrow-right" onclick="slide(this, 1)">&#8594;</button>
+          <button class="arrow-button arrow-left" onclick="slide(this, -1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="arrow-button arrow-right" onclick="slide(this, 1)"><i class="fas fa-chevron-right"></i></button>
         </div>
       </div>
     </div>
@@ -297,7 +311,7 @@
     </div>
 
     <footer>
-     Copyright © 2025 Shriya Desai
+      © 2025 Shriya Desai
     </footer>
   </div>
 
@@ -309,24 +323,21 @@
       event.currentTarget.classList.add('active');
     }
 
-    function slide(button, direction) {
-      const container = button.parentElement.querySelector('.carousel-card-container');
-      const width = container.offsetWidth;
-      container.scrollBy({ left: width * direction, behavior: 'smooth' });
-    }
-
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
     }
 
-    // Typing effect
-    const words = ['Shriya Desai', 'a Builder', 'a Product Enthusiast'];
-    let i = 0, j = 0, current = '', isDeleting = false;
+    function slide(btn, dir) {
+      const container = btn.parentElement.querySelector('.carousel-card-container');
+      container.scrollBy({ left: dir * container.clientWidth, behavior: 'smooth' });
+    }
+
+    const words = ['Graduate @ Dartmouth', 'an Analyst at Deloitte','Product & Strategy Enthusiast'];
+    let i = 0, j = 0, isDeleting = false;
 
     function type() {
       const typewriter = document.getElementById('typewriter');
-      current = words[i];
-
+      const current = words[i];
       if (!isDeleting && j <= current.length) {
         typewriter.textContent = current.substring(0, j++);
         setTimeout(type, 120);
